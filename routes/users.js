@@ -11,8 +11,6 @@ router.get("/register", (req, res) => res.render("register"));
 
 // @desc    Board
 // @route   GET /board/:id
-router.get("/board/:id", (req, res) => res.render("board"));
-
-
+router.get("/board/:id", (req, res) => res.render("board", {data: null}));
 
 module.exports = router;
