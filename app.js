@@ -14,14 +14,16 @@ app.use(morgan("dev"));
 
 // Set EJS as view engine
 app.use(expressLayouts);
-app.set("view-engine", "ejs");
+app.set("view engine", "ejs");
+
+// Routes
+app.use("/", require('./routes/index'));
+app.use("/users", require("./routes/users"));
+
 
 // Spinning up the server
 const PORT = process.env.PORT;
 
-app.get('/', (req, res) => {
-    res.send('Welcome!')
-})
 
 app.listen(
     PORT,
