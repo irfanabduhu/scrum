@@ -1,20 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background: #242333;
-    color: white;
-    font-family: 'Lato';
-    line-height: 1.5;
-    font-smooth: antialiased;
-}
 
 main {
-    max-width: 1000px;
-    margin: 20px auto;
     display: flex;
     align-items: flex-start;
 }
@@ -95,6 +81,16 @@ ul {
 .drag-item.is-moving {
     transform: scale(1.25);
     background: rgba(0, 0, 0, 0.8);
+}
+
+h3  {
+    margin-left: 10px;
+    font-size: 1.5em;
+}
+
+.add-task {
+    margin-bottom: 100px;
+    margin-left: 10px;
 }
 
 /* Dragula CSS  */

@@ -1,4 +1,5 @@
-// const User = require("../models/user");
+const User = require("../models/user");
+const Board = require("../models/board");
 
 exports.getUserDashboard = (req, res) => {
     user_id = +req.params.id;
@@ -6,5 +7,16 @@ exports.getUserDashboard = (req, res) => {
         return res.redirect("/signin");
     }
 
-    res.render("user.ejs");
+    User.findByPk(user_id)
+        .then((user) => {
+            Board.findAll({ where: { owner_id: user_id } })
+                .then((boards) =>
+                    res.render("user.ejs", {
+                        boards: boards,
+                        user_name: user.name,
+                    })
+                )
+                .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
 };
