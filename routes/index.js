@@ -1,16 +1,30 @@
 const express = require("express");
 const router = express.Router();
+const userController = require("../controllers/auth");
 
-// @desc    Homepage
-// @route   GET /
-router.get("/", (req, res) => res.render("welcome"));
+// @desc    Sign in page
+// @route   GET /signin
+router.get("/signin", userController.getSignIn);
 
-// @desc    Login page
-// @route   GET /login
-router.get("/login", (req, res) => res.render("login"));
+// @desc    Sign up page
+// @route   GET /signup
+router.get("/signup", userController.getSignUp);
+router.get("/", userController.getHomePage);
 
-// @desc    Registration page
-// @route   GET /register
-router.get("/register", (req, res) => res.render("register"));
+// @desc    Sign in page
+// @route   POST /signin
+router.post("/signin", userController.postSignIn);
+
+// @desc    Sign up page
+// @route   POST /signup
+router.post("/signup", userController.postSignUp);
+
+// @desc    Sign out page
+// @route   POST /signout
+router.get("/signout", userController.getSignOut);
+
+// @desc    Handle unauthorised access
+// @route   POST /signout
+router.get("/access-denied", (req, res) => res.render("access-denied"));
 
 module.exports = router;

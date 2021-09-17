@@ -1,0 +1,26 @@
+<!-- Registration form -->
+<!-- Landing page -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign Up</title>
+    </head>
+    <body>
+        <h1>Sign Up</h1>
+        <div class="sign-up-container">
+            <form id="signup" name="signup" method="post" action="/signup">
+                <label for="email">Email Address</label>
+                <input class="text" name="email" type="email" /> <br />
+                <label for="name">Name</label>
+                <input name="name" type="text" /> <br />
+                <label for="password">Password</label>
+                <input name="password" type="password" /> <br />
+                <input class="btn" type="submit" value="Sign Up" />
+            </form>
+            <a href="/signin">Already have an account? Sign in.</a>
+        </div>
+    </body>
+</html>

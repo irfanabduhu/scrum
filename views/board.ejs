@@ -1,56 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/board.css" />
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/dragula.min.js"></script>
+        <title><%= board_title %></title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/board.css">
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/dragula.min.js"></script>
-    <title><%= board_title %></title>
-</head>
+    <body>
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="/board/create-board">Create Board</a>
+            <a href="/signout">Log Out</a>
+        </nav>
+        <header>
+            <h1><%= board_title %></h1>
+        </header>
 
-<body>
-    <header>
-        <h1> <%= board_title %> </h1>
-    </header>
+        <h3>Add Task</h3>
+        <form action="/board/add-task" method="POST">
+            <label for="taskName">Task Name</label>
+            <input type="text" name="taskName" />
+            <input type="submit" value="Add task" />
+        </form>
 
-    <main>
-        <section class="drag-column todo">
-            <h2>To Do</h2>
-            <ul id="todo">
-                <% for (let task in todo) { %> 
-                    <li class="drag-item"> <%= task.text %> </li>
-                <% } %> 
-            </ul>
-        </section>
-        <section class="drag-column in-progress">
-            <h2>In Progress</h2>
-            <ul id="doing">
-                <% for (let task in doing) { %> 
-                    <li class="drag-item"> <%= task.text %> </li>
-                <% } %> 
-            </ul>
-        </section>
-        <section class="drag-column review">
-            <h2>Needs Review</h2>
-            <ul id="review">
-                <% for (let task in review) { %> 
-                    <li class="drag-item"> <%= task.text %> </li>
-                <% } %> 
-            </ul>
-        </section>
-        <section class="drag-column done">
-            <h2>Done</h2>
-            <ul id="done">
-                <% for (let task in done) { %> 
-                    <li class="drag-item"> <%= task.text %> </li>
-                <% } %>                 
-            </ul>
-        </section>
-    </main>
+        <main>
+            <section class="drag-column todo">
+                <h2>To Do</h2>
+                <ul id="todo">
+                    <% for (let task of todo) { %>
+                    <li class="drag-item"><%= task.text %></li>
+                    <% } %>
+                </ul>
+            </section>
+            <section class="drag-column doing">
+                <h2>In Progress</h2>
+                <ul id="doing">
+                    <% for (let task of doing) { %>
+                    <li class="drag-item"><%= task.text %></li>
+                    <% } %>
+                </ul>
+            </section>
+            <section class="drag-column review">
+                <h2>Needs Review</h2>
+                <ul id="review">
+                    <% for (let task of review) { %>
+                    <li class="drag-item"><%= task.text %></li>
+                    <% } %>
+                </ul>
+            </section>
+            <section class="drag-column done">
+                <h2>Done</h2>
+                <ul id="done">
+                    <% for (let task of done) { %>
+                    <li class="drag-item"><%= task.text %></li>
+                    <% } %>
+                </ul>
+            </section>
+        </main>
 
-    <script src="board.js"></script>
-</body>
+        <script>
+            dragula([
+                document.getElementById("todo"),
+                document.getElementById("doing"),
+                document.getElementById("review"),
+                document.getElementById("done"),
+            ])
+                .on("drag", function (el) {
+                    // add 'is-moving' class to element being dragged
+                    el.classList.add("is-moving");
+                })
+                .on("dragend", function (el) {
+                    // remove 'is-moving' class from element after dragging has stopped
+                    el.classList.remove("is-moving");
 
+                    // add the 'has-moved' class for 600ms then remove it
+                    window.setTimeout(function () {
+                        el.classList.add("has-moved");
+                        window.setTimeout(function () {
+                            el.classList.remove("has-moved");
+                        }, 600);
+                    }, 100);
+                });
+        </script>
+    </body>
 </html>

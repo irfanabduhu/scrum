@@ -1,32 +1,54 @@
 const path = require("path");
 const express = require("express");
-const expressLayouts = require("express-ejs-layouts");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const sequelize = require("./config/database");
+
+const app = express();
 
 // Load config
 dotenv.config({ path: "./config/config.env" });
-
-// Connect to database
-connectDB();
-
-const app = express();
 
 // Logging
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "static")));
 
 // Set EJS as view engine
-app.use(expressLayouts);
-app.set("view engine", "pug");
+// app.use(expressLayouts);
+app.set("view engine", "ejs");
+app.set("views", "views");
+
+// Parsing the request body as JSON
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Express session
+app.use(
+    session({
+        secret: "alpha beta gamma delta",
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 1000 * 60 * 60 * 24 }, // one day
+    })
+);
+
+// Cookie parser
+// app.use(cookieParser);
 
 // Routes
 app.use("/board", require("./routes/board"));
-app.use("/user", require("/routes/user"));
+app.use("/user", require("./routes/user"));
 app.use("/", require("./routes/index"));
 
-// Spinning up the server
+// Models
+require("./models/user");
+
 const PORT = process.env.PORT;
 
-app.listen(PORT, console.log(`Server running on ${PORT}`));
+// Build all models and spin up the server
+sequelize
+    .sync()
+    .then(app.listen(PORT, console.log(`Server running on ${PORT}`)))
+    .catch((err) => console.log(err));

@@ -1,20 +1,21 @@
-<!-- User Info -->
-<!-- A list of all available boards -->
-<!-- Landing page -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Create a new board</title>
     </head>
     <body>
         <nav>
             <a href="/">Dashboard</a>
-            <a href="/board/create-board">Create Board</a>
             <a href="/signout">Log Out</a>
         </nav>
-        <h1>Amato</h1>
+        <h1>Create a new board</h1>
+        <form action="/board/create-board" method="POST">
+            <label for="title">Board Title</label>
+            <input name="title" type="text" />
+            <input class="btn" type="submit" value="Create board" />
+        </form>
     </body>
 </html>
