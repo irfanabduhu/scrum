@@ -40,6 +40,7 @@ app.use(
 // Routes
 app.use("/board", require("./routes/board"));
 app.use("/user", require("./routes/user"));
+app.use("/task", require("./routes/task"));
 app.use("/", require("./routes/index"));
 
 // Models

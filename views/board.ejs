@@ -21,7 +21,7 @@
         </header>
 
         <h3>Add Task</h3>
-        <form action="/board/add-task" method="POST" class="add-task">
+        <form action="/task/add-task" method="POST" class="add-task">
             <label for="taskName">Task Name</label>
             <input type="text" name="taskName" />
             <input type="submit" value="Add task" class="btn" />
@@ -32,7 +32,9 @@
                 <h2>To Do</h2>
                 <ul id="todo">
                     <% for (let task of todo) { %>
-                    <li class="drag-item"><%= task.text %></li>
+                    <li class="drag-item" name="<%= task.id %>">
+                        <%= task.text %>
+                    </li>
                     <% } %>
                 </ul>
             </section>
@@ -40,7 +42,9 @@
                 <h2>In Progress</h2>
                 <ul id="doing">
                     <% for (let task of doing) { %>
-                    <li class="drag-item"><%= task.text %></li>
+                    <li class="drag-item" name="<%= task.id %>">
+                        <%= task.text %>
+                    </li>
                     <% } %>
                 </ul>
             </section>
@@ -48,7 +52,9 @@
                 <h2>Needs Review</h2>
                 <ul id="review">
                     <% for (let task of review) { %>
-                    <li class="drag-item"><%= task.text %></li>
+                    <li class="drag-item" name="<%= task.id %>">
+                        <%= task.text %>
+                    </li>
                     <% } %>
                 </ul>
             </section>
@@ -56,7 +62,9 @@
                 <h2>Done</h2>
                 <ul id="done">
                     <% for (let task of done) { %>
-                    <li class="drag-item"><%= task.text %></li>
+                    <li class="drag-item" name="<%= task.id %>">
+                        <%= task.text %>
+                    </li>
                     <% } %>
                 </ul>
             </section>
@@ -77,6 +85,10 @@
                     // remove 'is-moving' class from element after dragging has stopped
                     el.classList.remove("is-moving");
 
+                    const task_id = el.getAttribute("name");
+                    const status = el.parentNode.getAttribute("id");
+                    updateDb(task_id, status);
+
                     // add the 'has-moved' class for 600ms then remove it
                     window.setTimeout(function () {
                         el.classList.add("has-moved");
@@ -85,6 +97,36 @@
                         }, 600);
                     }, 100);
                 });
+
+            function updateDb(task_id, status) {
+                // sync task-status in the server:
+                fetch(`/task/update-task/${task_id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        status: status,
+                    }),
+                });
+            }
+
+            function deleteTask(e) {
+                const target = e.target;
+                const task_id = target.getAttribute("name");
+                target.remove();
+                fetch(`/task/delete-task/${task_id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
+
+            const liElems = document.querySelectorAll("li");
+            liElems.forEach((el) =>
+                el.addEventListener("dblclick", deleteTask)
+            );
         </script>
     </body>
 </html>

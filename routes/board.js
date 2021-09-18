@@ -11,10 +11,6 @@ router.get("/create-board", boardController.getCreateBoard);
 // @route   POST /board/create-board
 router.post("/create-board", boardController.postCreateBoard);
 
-// @desc    Create a new task
-// @route   POST /board/add-task/
-router.post("/add-task", boardController.postNewTask);
-
 // @desc    Get the specified Board
 // @route   GET /board/:id
 router.get("/:id", boardController.getBoardById);

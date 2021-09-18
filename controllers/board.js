@@ -16,22 +16,6 @@ exports.postCreateBoard = (req, res) => {
         .catch((err) => console.error(err));
 };
 
-exports.postNewTask = (req, res) => {
-    console.log("Creating a new task");
-    const task_name = req.body.taskName;
-    const board_id = req.session.board_id;
-    Task.create({
-        text: task_name,
-        status: "todo",
-        board_id: board_id,
-    })
-        .then(() => {
-            console.log("created");
-            res.redirect(`/board/${board_id}`);
-        })
-        .catch((err) => console.err(err));
-};
-
 exports.getBoardById = (req, res) => {
     console.log("PARAMETERS ", req.params);
     console.log("Board id: ", req.params.id);
