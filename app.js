@@ -34,9 +34,6 @@ app.use(
     })
 );
 
-// Cookie parser
-// app.use(cookieParser);
-
 // Routes
 app.use("/board", require("./routes/board"));
 app.use("/user", require("./routes/user"));
