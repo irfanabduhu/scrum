@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const { session } = require("passport");
 
 const User = require("../models/user");
 

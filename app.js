@@ -3,7 +3,6 @@ const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const session = require("express-session");
-const cookieParser = require("cookie-parser");
 const sequelize = require("./config/database");
 
 const app = express();
