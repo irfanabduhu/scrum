@@ -1,0 +1,26 @@
+<!-- User Info -->
+<!-- A list of all available boards -->
+<!-- Landing page -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles/main.css" />
+        <title><%= user_name %>'s Dashboard</title>
+    </head>
+    <body>
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="/board/create-board">Create Board</a>
+            <a href="/signout">Log Out</a>
+        </nav>
+        <h1><%= user_name %>'s Boards</h1>
+        <ul class="boards">
+            <% for (let board of boards) { %>
+            <li><a href="/board/<%= board.id %>"><%= board.title %></a></li>
+            <% } %>
+        </ul>
+    </body>
+</html>

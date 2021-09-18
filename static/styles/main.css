@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #242333;
+    color: white;
+    font-family: "Lato";
+    line-height: 1.5;
+    font-smooth: antialiased;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+a {
+    color: white;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+a:visited {
+    color: bisque;
+}
+
+form input {
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    width: 30%;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: bold;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
