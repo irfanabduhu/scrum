@@ -25,12 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 
 // Express session
 app.use(
-    session({
-        secret: "alpha beta gamma delta",
-        resave: false,
-        saveUninitialized: true,
-        cookie: { maxAge: 1000 * 60 * 60 * 24 }, // one day
-    })
+  session({
+    secret: "alpha beta gamma delta",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // one day
+  })
 );
 
 // Routes
@@ -46,6 +46,6 @@ const PORT = process.env.PORT;
 
 // Build all models and spin up the server
 sequelize
-    .sync()
-    .then(app.listen(PORT, console.log(`Server running on ${PORT}`)))
-    .catch((err) => console.log(err));
+  .sync()
+  .then(app.listen(PORT, console.log(`Server running on ${PORT}`)))
+  .catch((err) => console.log(err));

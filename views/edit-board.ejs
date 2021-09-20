@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title><%= board_title %></title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/board/create-board">Create Board</a>
+      <a href="/signout">Log Out</a>
+    </nav>
+
+    <h1><%= board_title %></h1>
+    <form action="/board/update-board/<%= board_id %> " method="POST">
+      <label for="title">Board Title</label>
+      <input name="title" type="text" />
+      <input class="btn update-btn" type="submit" value="Update board" />
+    </form>
+
+    <h2>Share with others</h2>
+    <form action="/board/share-board/<%= board_id %> " method="POST">
+      <label for="email">Email</label>
+      <input name="email" type="email" />
+      <input class="btn share-btn" type="submit" value="Share" />
+    </form>
+
+    <h2>Delete this board</h2>
+    <form action="/board/delete-board/<%= board_id %>" method="POST">
+      <label for="title">Please type the board title to confirm</label>
+      <input type="text" name="title" />
+      <input class="btn delete-btn" type="submit" value="Delete board" />
+    </form>
+  </body>
+</html>

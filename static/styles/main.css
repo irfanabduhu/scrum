@@ -33,9 +33,24 @@ form input {
 
 .btn {
     margin-top: 20px;
-    padding: 10px;
+    padding: 12px;
     font-weight: bold;
     background: white;
-    border: 1px solid gray;
+    border: 0;
     border-radius: 5px;
+}
+
+.update-btn {
+    background: rgb(136, 225, 2);
+    color: white;
+}
+
+.share-btn {
+    background: rgb(43, 146, 255);
+    color: white;
+}
+
+.delete-btn {
+    background: rgb(255, 0, 17);
+    color: white;
 }
