@@ -25,10 +25,11 @@
     </nav>
     <header>
       <h1>
-        <%= board_title %>
+        <%= board_title %> <% if (is_owner) { %>
         <a href="/board/edit-board/<%= board_id %> " class="edit-btn"
           ><i class="fas fa-pen"></i
         ></a>
+        <% } %>
       </h1>
     </header>
 

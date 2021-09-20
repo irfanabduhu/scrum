@@ -11,10 +11,9 @@ exports.getUserDashboard = (req, res) => {
 
   User.findByPk(user_id)
     .then((user) => {
-      Board.findAll({ where: { owner_id: user_id }, raw: true })
+      Board.findAll({ where: { owner_id: user_id } })
         .then((boards) => {
           Board.findAll({
-            raw: true,
             include: [
               {
                 model: User,
@@ -29,7 +28,6 @@ exports.getUserDashboard = (req, res) => {
             },
           })
             .then((otherBoards) => {
-              console.log(otherBoards);
               res.render("user", {
                 boards: boards,
                 otherBoards: otherBoards,

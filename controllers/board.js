@@ -30,16 +30,12 @@ exports.getEditBoard = (req, res) => {
   const board_id = +req.params.id;
   const user_id = req.session.user_id;
   Board.findByPk(board_id)
-    .then((board) => {
-      if (board.owner_id != user_id) {
-        console.log("Access denied.");
-        return res.redirect("/access-denied");
-      }
+    .then((board) =>
       res.render("edit-board", {
         board_id: board_id,
         board_title: board.title,
-      });
-    })
+      })
+    )
     .catch((err) => console.log(err));
 };
 
@@ -102,6 +98,7 @@ exports.getBoardById = (req, res) => {
           console.log("Access denied.");
           return res.redirect("/access-denied");
         }
+        const is_owner = board.owner_id == user_id;
         Task.findAll({ where: { board_id: board_id } })
           .then((tasks) => {
             const todo = tasks.filter((task) => task.status === "todo");
@@ -110,6 +107,7 @@ exports.getBoardById = (req, res) => {
             const done = tasks.filter((task) => task.status === "done");
             todo.map((task) => console.log(task.text));
             res.render("board", {
+              is_owner: is_owner,
               board_id: board.id,
               board_title: board.title,
               todo: todo,
