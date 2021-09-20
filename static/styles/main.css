@@ -1,56 +1,80 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background: #242333;
-    color: white;
-    font-family: "Lato";
-    line-height: 1.5;
-    font-smooth: antialiased;
-    max-width: 1000px;
-    margin: 20px auto;
+  background: #242333;
+  color: white;
+  font-family: "Lato";
+  line-height: 1.5;
+  font-smooth: antialiased;
+  max-width: 1000px;
+  margin: 20px auto;
 }
 
-a {
-    color: white;
-    font-weight: bold;
-    padding-right: 20px;
-}
-
+a,
 a:visited {
-    color: bisque;
+  color: white;
+  font-weight: bold;
+}
+
+nav a {
+  font-size: 32px;
+  padding-right: 50px;
 }
 
 form input {
-    display: block;
-    padding: 10px;
-    margin-bottom: 5px;
-    width: 30%;
+  display: block;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 30%;
 }
 
 .btn {
-    margin-top: 20px;
-    padding: 12px;
-    font-weight: bold;
-    background: white;
-    border: 0;
-    border-radius: 5px;
+  margin-top: 20px;
+  padding: 12px;
+  font-weight: bold;
+  background: white;
+  border: 0;
+  border-radius: 5px;
 }
 
-.update-btn {
-    background: rgb(136, 225, 2);
-    color: white;
+.update-btn,
+.sign-up,
+.sign-in {
+  background: rgb(115, 191, 2);
+  color: white;
 }
 
 .share-btn {
-    background: rgb(43, 146, 255);
-    color: white;
+  background: rgb(43, 146, 255);
+  color: white;
 }
 
 .delete-btn {
-    background: rgb(255, 0, 17);
-    color: white;
+  background: rgb(255, 0, 17);
+  color: white;
+}
+
+.boards li {
+  font-size: 1.25em;
+  list-style: circle;
+}
+
+/* Source of the following style: https://codepen.io/masonconkright/pen/aJOoVO */
+.swipe,
+.swipe:visited {
+  color: white;
+  background-image: linear-gradient(to bottom, transparent 65%, #481de1 0);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  transition: background-size 0.4s ease;
+}
+
+.swipe:hover {
+  background-size: 100% 100%;
+  cursor: pointer;
 }
