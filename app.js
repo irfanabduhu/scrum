@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-// const morgan = require("morgan");
+const morgan = require("morgan");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const sequelize = require("./config/database");
@@ -11,7 +11,7 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 
 // Logging
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "static")));
 
 // Set EJS as view engine
