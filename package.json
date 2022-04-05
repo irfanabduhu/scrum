@@ -2,11 +2,9 @@
     "name": "scrum",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
-    "environment": "production",
+    "main": "app.js",
     "scripts": {
-        "start": "node app",
-        "dev": "nodemon app"
+        "start": "nodemon app.js"
     },
     "keywords": [],
     "author": "",
