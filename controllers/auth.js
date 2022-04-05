@@ -44,7 +44,6 @@ exports.postSignIn = (req, res, next) => {
 };
 
 exports.postSignUp = (req, res, next) => {
-  console.log("here i am");
   const email = req.body.email.toLowerCase();
   const name = req.body.name;
   const password = generateHash(req.body.password);
