@@ -1,5 +1,4 @@
 const Sequelize = require("sequelize");
-const dotenv = require("dotenv");
 
 // Create a connection pool
 const DATABASE_URL = process.env.DATABASE_URL;
