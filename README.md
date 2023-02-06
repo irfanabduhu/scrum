@@ -1,2 +1,10 @@
 # Kanban Board
-A live version of this project is hosted [here](https://scrum-js.herokuapp.com/).
+
+Built with
+- Node.js
+- Express
+- PostgreSQL
+- Sequelize
+- EJS
+
+A live version of this project was hosted [here](https://scrum-js.herokuapp.com/).
