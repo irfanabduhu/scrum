@@ -7,4 +7,4 @@ Built with
 - Sequelize
 - EJS
 
-A live version of this project was hosted [here](https://scrum-js.herokuapp.com/).
+A live version of this project was hosted [Heroku](https://scrum-js.herokuapp.com/). It is no longer available.
